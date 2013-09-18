@@ -1,0 +1,12 @@
+399ee89d545e9e8a2d970f47f0012392 *DESCRIPTION
+7d5d1c78c52f2c7a9cdb9028d96d0397 *NAMESPACE
+09bc4b3d67392b262cbdc2046d9a0cd3 *R/HC.R
+786ccb63f5e90c09ba7fb02a756100d8 *R/Pboot.R
+5eb14406a5a8a0a7aadb2d197df13398 *R/QT.R
+094ca8afac221265032ff0d2ec1f4b1e *R/Tboot.R
+ac22b8f9f634ffe9f372c0c20dacf8b9 *data/schools.rda
+508c5caab87f9262dbf57aebb8af4f50 *man/HC.Rd
+5e7cd0f47c35a00a36031fa4e588732c *man/Pboot.Rd
+b46480d4327bb2c23d36e2fab9b011ad *man/Tboot.Rd
+5c62ef7a88ad96e1abec0849b23a3d48 *man/hcci-package.Rd
+b6a50e62dc5228f6ffffac43d5d97495 *man/schools.Rd
