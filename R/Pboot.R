@@ -52,8 +52,7 @@ Pboot <- function(model, significance=0.05,
     
     y_star = as.vector(Xbeta + t_star*error_hat/root_1_less_h)
     model_string = as.character(model$call$formula)
-    model_star = lm(formula=as.formula(paste("y_star~",
-                                             as.character(model_string[3]),sep="")))
+    model_star = lm(y_star ~ X[,-1])
     error_hat_star = as.vector(model_star$residuals)
     beta_star = as.vector(model_star$coefficients)
     matrix_beta_star[j,] = as.vector(beta_star)
@@ -70,8 +69,7 @@ Pboot <- function(model, significance=0.05,
         
         y_star_star = as.vector(Xbeta_star + t_star_star*error_hat_star/root_1_less_h)
         model_string = as.character(model$call$formula)
-        model_star_star = lm(formula=as.formula(paste("y_star_star~",
-                                                      as.character(model_string[3]),sep="")))
+        model_star_star = lm(y_star_star ~ X[,-1])
         beta_star_star = as.vector(model_star_star$coefficients)
         
         for(m in 1:number_parameters){

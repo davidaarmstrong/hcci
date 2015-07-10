@@ -56,8 +56,7 @@ function(model, significance=0.05, hc=4,
     
     y_star = as.vector(Xbeta + t_star*error_hat/root_1_less_h)
     model_string = as.character(model$call$formula)
-    model_star = lm(formula=as.formula(paste("y_star~",
-                    as.character(model_string[3]),sep="")))
+    model_star = lm(y_star ~ X[,-1])
     error_hat_star = as.vector(model_star$residuals)
     beta_star = as.vector(model_star$coefficients)
     standard_error_star = sqrt(diag(HC(model_star, method=hc)))
@@ -77,8 +76,7 @@ function(model, significance=0.05, hc=4,
         }else t_star_star = rnorm(length(model$fitted.values),0,1)
         y_star_star = as.vector(Xbeta_star + t_star_star*error_hat_star/root_1_less_h)
         model_string = as.character(model$call$formula)
-        model_star_star = lm(formula=as.formula(paste("y_star_star~",
-                                                as.character(model_string[3]),sep="")))
+        model_star_star = lm(y_star_star ~ X[,-1])
         beta_star_star = as.vector(model_star_star$coefficients)
         standard_error_star_star = sqrt(diag(HC(model_star_star, method=hc)))
       
