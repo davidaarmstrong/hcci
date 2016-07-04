@@ -1,4 +1,6 @@
 import(stats)
+S3method(print, hcci)
 export(Tboot)
 export(Pboot)
 export(HC)
+export(print.hcci)

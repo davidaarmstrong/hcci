@@ -37,7 +37,8 @@ function(model, significance=0.05, hc=4,
   number_parameters = length(model$coefficients)
   X = model.matrix(model)
   n = nrow(X)
-  beta = as.vector(model$coefficients)
+  beta = as.vector(model$coefficients)  
+  names(beta) <- colnames(X)
   h = as.vector(hatvalues(model))
   Xbeta = X%*%beta
   error_hat = as.vector(model$residuals)
@@ -117,6 +118,11 @@ function(model, significance=0.05, hc=4,
     result = list("beta" = beta,"ci_lower_simple" = ic_inf_simple, "ci_upper_simple" = ic_sup_simple,
                   "ci_lower_double" = ic_inf_double, "ci_upper_double" = ic_sup_double, "J" = J,
                   "K" = K)
-    class(result) <- "list"
-    return(result)
+    class(result) <- "hcci"
+    result
 }
+
+
+
+
+

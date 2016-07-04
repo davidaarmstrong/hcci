@@ -33,6 +33,7 @@ Pboot <- function(model, significance=0.05,
   X = model.matrix(model)
   n = nrow(X)
   beta = as.vector(model$coefficients)
+  names(beta) <- colnames(X)
   h = as.vector(hatvalues(model))
   Xbeta = X%*%beta
   error_hat = as.vector(model$residuals)
@@ -103,6 +104,6 @@ Pboot <- function(model, significance=0.05,
   result = list("beta" = beta,"ci_lower_simple" = ic_inf_simple,
                 "ci_upper_simple" = ic_sup_simple, "ci_lower_double" = ic_inf_double,
                 "ci_upper_double" = ic_sup_double)
-  class(result) <- "list"
+  class(result) <- "hcci"
   return(result)
 }
