@@ -7,7 +7,7 @@ HC <- function(model, method=4, k=0.7){
     method=4L
   }
   
-  X = as.matrix(cbind(1,model$model[,-1]))
+  X = model.matrix(model)
   bread_1 = solve(t(X)%*%X)%*%t(X)
   bread_2 = X%*%solve(t(X)%*%X)
   error_hat = as.vector(model$residuals)

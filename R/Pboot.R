@@ -30,8 +30,8 @@ Pboot <- function(model, significance=0.05,
   }
   
   number_parameters = length(model$coefficients)
-  X = as.matrix(cbind(1,model$model[,-1]))
-  n = dim(X)[1]
+  X = model.matrix(model)
+  n = nrow(X)
   beta = as.vector(model$coefficients)
   h = as.vector(hatvalues(model))
   Xbeta = X%*%beta
@@ -44,7 +44,8 @@ Pboot <- function(model, significance=0.05,
   #browser()
   
   for(j in 1:J){
-    
+    tmpmod <- model
+    attr(tmpmod$terms, ".Environment") <- environment()
     if(distribution=="rademacher"){
       t_star = as.vector(sample(c(-1,1),size=length(model$fitted.values),
                                 replace=TRUE))
@@ -52,14 +53,14 @@ Pboot <- function(model, significance=0.05,
     
     y_star = as.vector(Xbeta + t_star*error_hat/root_1_less_h)
     model_string = as.character(model$call$formula)
-    model_star = lm(y_star ~ X[,-1])
+    model_star = update(tmpmod, y_star ~ .)
     error_hat_star = as.vector(model_star$residuals)
     beta_star = as.vector(model_star$coefficients)
     matrix_beta_star[j,] = as.vector(beta_star)
     
     Xbeta_star = X%*%beta_star
     
-    # Aqui começa o bootstrap duplo.
+    # Aqui comeca o bootstrap duplo.
     if(double==TRUE){
       for(k in 1:K){
         if(distribution=="rademacher"){
@@ -67,9 +68,11 @@ Pboot <- function(model, significance=0.05,
                                          replace=TRUE))
         }else t_star_star = rnorm(length(model$fitted.values),0,1)
         
+        tmpmod2 <- model
         y_star_star = as.vector(Xbeta_star + t_star_star*error_hat_star/root_1_less_h)
+        attr(tmpmod2$terms, ".Environment") <- environment()
         model_string = as.character(model$call$formula)
-        model_star_star = lm(y_star_star ~ X[,-1])
+        model_star_star = update(tmpmod2, y_star_star ~ .)
         beta_star_star = as.vector(model_star_star$coefficients)
         
         for(m in 1:number_parameters){

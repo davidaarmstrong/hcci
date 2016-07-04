@@ -1,16 +1,15 @@
 Package: hcci
 Type: Package
-Title: Interval estimation for the parameters of linear models with
-        heteroskedasticity (Wild Bootstrap)
-Version: 1.0.0
-Date: 2013-09-18
+Title: Interval Estimation for the Parameters of Linear Models with Heteroskedasticity (Wild Bootstrap)
+Version: 1.0.1
+Date: 2016-07-03
 Authors@R: c(person(given = "Pedro Rafael", family = "Diniz Marinho", role =
         c("aut", "cre"), email = "pedro.rafael.marinho@gmail.com"),
         person(given = "Francisco", family = "Cribari Neto", role =
         c("aut","ctb"), email = "cribari@de.ufpe.br"))
 Maintainer: Pedro Rafael Diniz Marinho <pedro.rafael.marinho@gmail.com>
-Description: This package calculates the interval estimates for the parameters of 
- linear models heteroscedastic regression using bootstrap - (Wild Bootstrap) and double
+Description: Interval estimates for the parameters of linear models are
+ calculated with heteroscedastic regression using bootstrap - (Wild Bootstrap) and double
  bootstrap-t (Wild Bootstrap). It is also possible to calculate confidence intervals using
  the percentile bootstrap and percentile bootstrap double. It is possible to calculate
  consistent estimates of the covariance matrix of the parameters of linear regression models
