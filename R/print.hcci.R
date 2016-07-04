@@ -6,6 +6,7 @@ print.hcci <- function(x, ..., digits=3){
         sprintf(fmt, x$ci_lower_simple),
         sprintf(fmt, x$ci_upper_simple))
     colnames(mat) <- c("Estimate", "Lower", "Upper")
+    rownames(mat) <- names(x$beta)
     if(length(x$ci_lower_double) > 0){
         mat <- cbind(mat, 
             sprintf(fmt, x$ci_lower_double), 

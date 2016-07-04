@@ -32,8 +32,7 @@ Pboot <- function(model, significance=0.05,
   number_parameters = length(model$coefficients)
   X = model.matrix(model)
   n = nrow(X)
-  beta = as.vector(model$coefficients)
-  names(beta) <- colnames(X)
+  beta = coef(model)
   h = as.vector(hatvalues(model))
   Xbeta = X%*%beta
   error_hat = as.vector(model$residuals)
